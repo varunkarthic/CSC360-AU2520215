@@ -1,17 +1,17 @@
-**# Moving Triangle**
+# Moving Triangle
 
 A small Java Swing project that demonstrates two basic forms of interactive 2D graphics using the mouse:
 
-1\. **\*\*FollowCursor\*\*** — a red equilateral triangle follows the cursor around the window.
-2\. **\*\*Zoom (Triangle Zoom)\*\*** — a green equilateral triangle remains fixed at the centre of the window while its size changes based only on the cursor's vertical (\`Y\`) position.
+1. **FollowCursor** — a red equilateral triangle follows the cursor around the window.
+2. **Zoom (Triangle Zoom)** — a green equilateral triangle remains fixed at the centre of the window while its size changes based only on the cursor's vertical (`Y`) position.
 
 The project uses only the standard Java Swing and AWT libraries and does not require any external dependencies.
 
-**---**
+---
 
-**## Project Structure**
+## Project Structure
 
-\`\`\`text
+```text
 moving-triangle/
 ├── README.md
 ├── src/
@@ -20,175 +20,170 @@ moving-triangle/
 └── media/
     ├── FollowCursor.mp4
     └── TriangleZoom.mp4
-\`\`\`
+```
 
-**---**
+---
 
-**## Development Environment**
+## Development Environment
 
 This project was built and tested using:
 
-\`\`\`text
+```text
 openjdk 26.0.2 2026-07-21
 OpenJDK Runtime Environment Homebrew (build 26.0.2)
 OpenJDK 64-Bit Server VM Homebrew (build 26.0.2, mixed mode, sharing)
-\`\`\`
+```
 
 No third-party Java libraries are required.
 
-**---**
+---
 
-**## Build and Run**
+## Build and Run
 
-Open a terminal and move into the \`src\` directory:
+Open a terminal and move into the `src` directory:
 
-\`\`\`bash
+```bash
 cd src
-\`\`\`
+```
 
-**### FollowCursor**
+### FollowCursor
 
 Compile:
 
-\`\`\`bash
+```bash
 javac FollowCursor.java
-\`\`\`
+```
 
 Run:
 
-\`\`\`bash
+```bash
 java FollowCursor
-\`\`\`
+```
 
-**### Zoom**
+### Zoom
 
 Compile:
 
-\`\`\`bash
+```bash
 javac Zoom.java
-\`\`\`
+```
 
 Run:
 
-\`\`\`bash
+```bash
 java Zoom
-\`\`\`
+```
 
-**### Compile Both Modules Together**
+### Compile Both Modules Together
 
-\`\`\`bash
+```bash
 javac FollowCursor.java Zoom.java
-\`\`\`
+```
 
 Then run either module independently:
 
-\`\`\`bash
+```bash
 java FollowCursor
-\`\`\`
+```
 
 or:
 
-\`\`\`bash
+```bash
 java Zoom
-\`\`\`
+```
 
-\> \`javac\` is given the source filename, such as \`FollowCursor.java\`, while \`java\` is given the class name without the \`.class\` extension.
+> `javac` is given the source filename, such as `FollowCursor.java`, while `java` is given the class name without the `.class` extension.
 
-**---**
+---
 
-**# Module 1 — FollowCursor**
+# Module 1 — FollowCursor
 
-\`FollowCursor.java\` creates a red equilateral triangle with a black outline. The triangle follows the mouse cursor around the window, with the cursor positioned at the triangle's centroid.
+`FollowCursor.java` creates a red equilateral triangle with a black outline. The triangle follows the mouse cursor around the window, with the cursor positioned at the triangle's centroid.
 
-**## Demonstration**
+## Demonstration
 
-<video controls width="720">
-  <source src="./media/FollowCursor.mp4" type="video/mp4">
-  Your browser does not support embedded MP4 video.
-</video>
+[▶ View `FollowCursor.mp4`](./media/FollowCursor.mp4)
 
-[Open `FollowCursor.mp4` directly](./media/FollowCursor.mp4)
+---
 
-**---**
+## 1. Imports
 
-**## 1. Imports**
-
-\`\`\`java
-import javax.swing.\*;
-import java.awt.\*;
-import java.awt.event.\*;
-\`\`\`
+```java
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+```
 
 These imports provide the classes needed for the graphical interface and mouse input.
 
-\- \`javax.swing.\*\` provides Swing components such as \`JFrame\` and \`JPanel\`.
-\- \`java.awt.\*\` provides graphics-related classes such as \`Graphics\`, \`Graphics2D\`, \`Color\`, \`BasicStroke\`, and \`RenderingHints\`.
-\- \`java.awt.event.\*\` provides event-handling classes such as \`MouseEvent\` and \`MouseMotionAdapter\`.
+- `javax.swing.*` provides Swing components such as `JFrame` and `JPanel`.
+- `java.awt.*` provides graphics-related classes such as `Graphics`, `Graphics2D`, `Color`, `BasicStroke`, and `RenderingHints`.
+- `java.awt.event.*` provides event-handling classes such as `MouseEvent` and `MouseMotionAdapter`.
 
-**---**
+---
 
-**## 2. Creating the Drawing Panel**
+## 2. Creating the Drawing Panel
 
-\`\`\`java
+```java
 public class FollowCursor extends JPanel {
-\`\`\`
+```
 
-\`FollowCursor\` extends \`JPanel\`.
+`FollowCursor` extends `JPanel`.
 
-A \`JPanel\` is a rectangular Swing component that can be placed inside a window. By extending it, the program can override its default drawing behaviour and render custom graphics.
+A `JPanel` is a rectangular Swing component that can be placed inside a window. By extending it, the program can override its default drawing behaviour and render custom graphics.
 
 The structure is approximately:
 
-\`\`\`text
+```text
 JFrame
 └── FollowCursor (JPanel)
     └── Triangle drawn using Graphics2D
-\`\`\`
+```
 
-**---**
+---
 
-**## 3. Storing the Cursor Position and Triangle Size**
+## 3. Storing the Cursor Position and Triangle Size
 
-\`\`\`java
+```java
 private int mouseX = 400;
 private int mouseY = 300;
 
 private final int SIDE = 100;
-\`\`\`
+```
 
-\`mouseX\` and \`mouseY\` store the latest known cursor coordinates.
+`mouseX` and `mouseY` store the latest known cursor coordinates.
 
 The initial values are:
 
-\`\`\`text
+```text
 X = 400
 Y = 300
-\`\`\`
+```
 
-which approximately correspond to the centre of an \`800 × 600\` window.
+which approximately correspond to the centre of an `800 × 600` window.
 
-\`SIDE\` stores the length of every side of the equilateral triangle.
+`SIDE` stores the length of every side of the equilateral triangle.
 
-Because it is declared using \`final\`, its value cannot be reassigned after initialization.
+Because it is declared using `final`, its value cannot be reassigned after initialization.
 
-**---**
+---
 
-**## 4. Constructor and Background**
+## 4. Constructor and Background
 
-\`\`\`java
+```java
 public FollowCursor() {
     setBackground(Color.WHITE);
-\`\`\`
+```
 
 The constructor sets the panel background to white.
 
 Swing clears the previous frame using this background whenever the panel is repainted.
 
-**---**
+---
 
-**## 5. Detecting Mouse Movement**
+## 5. Detecting Mouse Movement
 
-\`\`\`java
+```java
 addMouseMotionListener(new MouseMotionAdapter() {
 
     @Override
@@ -207,137 +202,137 @@ addMouseMotionListener(new MouseMotionAdapter() {
         repaint();
     }
 });
-\`\`\`
+```
 
 A mouse-motion listener is attached to the panel.
 
-\`MouseMotionAdapter\` is used so that only the required mouse-motion methods need to be overridden.
+`MouseMotionAdapter` is used so that only the required mouse-motion methods need to be overridden.
 
-**### \`mouseMoved\`**
+### `mouseMoved`
 
-\`\`\`java
+```java
 mouseX = e.getX();
 mouseY = e.getY();
-\`\`\`
+```
 
-\`e.getX()\` returns the horizontal cursor position relative to the panel.
+`e.getX()` returns the horizontal cursor position relative to the panel.
 
-\`e.getY()\` returns the vertical cursor position relative to the panel.
+`e.getY()` returns the vertical cursor position relative to the panel.
 
 Java's coordinate system begins at the top-left corner:
 
-\`\`\`text
+```text
 (0,0) ───────────────→ +X
   |
   |
   |
   ↓
  +Y
-\`\`\`
+```
 
 After the new coordinates are stored:
 
-\`\`\`java
+```java
 repaint();
-\`\`\`
+```
 
 requests that Swing redraw the panel.
 
-**### \`mouseDragged\`**
+### `mouseDragged`
 
-\`mouseDragged\` performs the same operation while the mouse is moved with a button held down.
+`mouseDragged` performs the same operation while the mouse is moved with a button held down.
 
-**---**
+---
 
-**## 6. Drawing with \`paintComponent\`**
+## 6. Drawing with `paintComponent`
 
-\`\`\`java
+```java
 @Override
 protected void paintComponent(Graphics g) {
     super.paintComponent(g);
-\`\`\`
+```
 
-Swing calls \`paintComponent\` whenever the panel needs to be rendered.
+Swing calls `paintComponent` whenever the panel needs to be rendered.
 
 Calling:
 
-\`\`\`java
+```java
 super.paintComponent(g);
-\`\`\`
+```
 
-allows the normal \`JPanel\` drawing process to occur first, including clearing the previous frame.
+allows the normal `JPanel` drawing process to occur first, including clearing the previous frame.
 
 Without this call, old triangle positions could remain visible and create trails.
 
-**---**
+---
 
-**## 7. Converting to \`Graphics2D\`**
+## 7. Converting to `Graphics2D`
 
-\`\`\`java
+```java
 Graphics2D g2 = (Graphics2D) g;
-\`\`\`
+```
 
-Swing provides the drawing context as a \`Graphics\` object.
+Swing provides the drawing context as a `Graphics` object.
 
-It is converted to \`Graphics2D\` because \`Graphics2D\` provides additional rendering capabilities such as:
+It is converted to `Graphics2D` because `Graphics2D` provides additional rendering capabilities such as:
 
-\- stroke thickness,
-\- anti-aliasing,
-\- transformations,
-\- improved 2D rendering control.
+- stroke thickness,
+- anti-aliasing,
+- transformations,
+- improved 2D rendering control.
 
-**---**
+---
 
-**## 8. Enabling Anti-Aliasing**
+## 8. Enabling Anti-Aliasing
 
-\`\`\`java
+```java
 g2.setRenderingHint(
-        RenderingHints.KEY\_ANTIALIASING,
-        RenderingHints.VALUE\_ANTIALIAS\_ON
+        RenderingHints.KEY_ANTIALIASING,
+        RenderingHints.VALUE_ANTIALIAS_ON
 );
-\`\`\`
+```
 
 Diagonal lines can appear jagged because a display consists of square pixels.
 
 Anti-aliasing smooths the triangle edges by blending pixels around the boundary.
 
-**---**
+---
 
-**## 9. Calculating the Triangle Height**
+## 9. Calculating the Triangle Height
 
-\`\`\`java
-double height = Math.sqrt(3) / 2 \* SIDE;
-\`\`\`
+```java
+double height = Math.sqrt(3) / 2 * SIDE;
+```
 
-For an equilateral triangle with side length \`s\`, the height is:
+For an equilateral triangle with side length `s`, the height is:
 
-\`\`\`text
+```text
 h = (sqrt(3) / 2) × s
-\`\`\`
+```
 
-For a side length of \`100\` pixels:
+For a side length of `100` pixels:
 
-\`\`\`text
+```text
 h ≈ 86.60 pixels
-\`\`\`
+```
 
 This height is used to calculate the three vertices.
 
-**---**
+---
 
-**## 10. Keeping the Cursor at the Triangle's Centroid**
+## 10. Keeping the Cursor at the Triangle's Centroid
 
 The program does not place the top vertex directly at the cursor.
 
 Instead, the triangle is positioned so that its centroid lies at:
 
-\`\`\`text
+```text
 (mouseX, mouseY)
-\`\`\`
+```
 
-For an equilateral triangle, the centroid divides the vertical median in a \`2 : 1\` ratio:
+For an equilateral triangle, the centroid divides the vertical median in a `2 : 1` ratio:
 
-\`\`\`text
+```text
              top
               ▲
               |
@@ -347,118 +342,118 @@ For an equilateral triangle, the centroid divides the vertical median in a \`2 :
               |
              h/3
               |
-        \_\_\_\_\_\_|\_\_\_\_\_\_
-\`\`\`
+        ______|______
+```
 
 Therefore:
 
-\`\`\`text
+```text
 Distance from centroid to top vertex  = 2h / 3
 Distance from centroid to bottom edge = h / 3
-\`\`\`
+```
 
-**---**
+---
 
-**## 11. Calculating the Three Vertices**
+## 11. Calculating the Three Vertices
 
-**### Top Vertex**
+### Top Vertex
 
-\`\`\`java
+```java
 int topX = mouseX;
-int topY = (int) (mouseY - (2.0 / 3.0) \* height);
-\`\`\`
+int topY = (int) (mouseY - (2.0 / 3.0) * height);
+```
 
 The top vertex has the same X-coordinate as the cursor.
 
-Its Y-coordinate is shifted upward by \`2h / 3\`.
+Its Y-coordinate is shifted upward by `2h / 3`.
 
-**### Bottom-Left Vertex**
+### Bottom-Left Vertex
 
-\`\`\`java
+```java
 int leftX = mouseX - SIDE / 2;
-int leftY = (int) (mouseY + (1.0 / 3.0) \* height);
-\`\`\`
+int leftY = (int) (mouseY + (1.0 / 3.0) * height);
+```
 
 The bottom-left vertex is shifted:
 
-\- half the side length to the left,
-\- one third of the triangle height downward.
+- half the side length to the left,
+- one third of the triangle height downward.
 
-**### Bottom-Right Vertex**
+### Bottom-Right Vertex
 
-\`\`\`java
+```java
 int rightX = mouseX + SIDE / 2;
 int rightY = leftY;
-\`\`\`
+```
 
 The bottom-right vertex is symmetrical to the left vertex.
 
 Both lower vertices share the same Y-coordinate.
 
-**---**
+---
 
-**## 12. Storing the Polygon Coordinates**
+## 12. Storing the Polygon Coordinates
 
-\`\`\`java
+```java
 int[] xPoints = {
-        topX,
-        leftX,
-        rightX
+    topX,
+    leftX,
+    rightX
 };
 
 int[] yPoints = {
-        topY,
-        leftY,
-        rightY
+    topY,
+    leftY,
+    rightY
 };
-\`\`\`
+```
 
 Java's polygon methods take separate arrays for X and Y coordinates.
 
 Together, these arrays represent:
 
-\`\`\`text
+```text
 Point 1 → (topX, topY)
 Point 2 → (leftX, leftY)
 Point 3 → (rightX, rightY)
-\`\`\`
+```
 
-**---**
+---
 
-**## 13. Filling the Triangle**
+## 13. Filling the Triangle
 
-\`\`\`java
+```java
 g2.setColor(Color.RED);
 g2.fillPolygon(xPoints, yPoints, 3);
-\`\`\`
+```
 
 The drawing colour is changed to red.
 
-\`fillPolygon\` draws a filled polygon using the three supplied vertices.
+`fillPolygon` draws a filled polygon using the three supplied vertices.
 
-The final argument, \`3\`, specifies that the polygon has three points.
+The final argument, `3`, specifies that the polygon has three points.
 
-**---**
+---
 
-**## 14. Drawing the Black Outline**
+## 14. Drawing the Black Outline
 
-\`\`\`java
+```java
 g2.setColor(Color.BLACK);
 g2.setStroke(new BasicStroke(3));
 g2.drawPolygon(xPoints, yPoints, 3);
-\`\`\`
+```
 
 The drawing colour is changed to black.
 
-\`BasicStroke(3)\` creates a three-pixel-wide outline.
+`BasicStroke(3)` creates a three-pixel-wide outline.
 
-\`drawPolygon\` then draws the border around the already-filled triangle.
+`drawPolygon` then draws the border around the already-filled triangle.
 
-**---**
+---
 
-**## 15. Creating the Window**
+## 15. Creating the Window
 
-\`\`\`java
+```java
 public static void main(String[] args) {
 
     JFrame frame = new JFrame("Moving Triangle");
@@ -468,76 +463,76 @@ public static void main(String[] args) {
     frame.add(panel);
 
     frame.setSize(800, 600);
-    frame.setDefaultCloseOperation(JFrame.EXIT\_ON\_CLOSE);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setLocationRelativeTo(null);
 
     frame.setVisible(true);
 }
-\`\`\`
+```
 
-**### \`JFrame\`**
+### `JFrame`
 
-\`\`\`java
+```java
 JFrame frame = new JFrame("Moving Triangle");
-\`\`\`
+```
 
 creates the main application window.
 
-**### Creating the Panel**
+### Creating the Panel
 
-\`\`\`java
+```java
 FollowCursor panel = new FollowCursor();
-\`\`\`
+```
 
 creates an instance of the custom drawing panel.
 
-**### Adding the Panel**
+### Adding the Panel
 
-\`\`\`java
+```java
 frame.add(panel);
-\`\`\`
+```
 
 places the custom panel inside the window.
 
-**### Window Size**
+### Window Size
 
-\`\`\`java
+```java
 frame.setSize(800, 600);
-\`\`\`
+```
 
 sets the initial window size.
 
-**### Closing Behaviour**
+### Closing Behaviour
 
-\`\`\`java
-frame.setDefaultCloseOperation(JFrame.EXIT\_ON\_CLOSE);
-\`\`\`
+```java
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+```
 
 causes the application to terminate when the window is closed.
 
-**### Centre the Window**
+### Centre the Window
 
-\`\`\`java
+```java
 frame.setLocationRelativeTo(null);
-\`\`\`
+```
 
 places the window near the centre of the screen.
 
-**### Display the Window**
+### Display the Window
 
-\`\`\`java
+```java
 frame.setVisible(true);
-\`\`\`
+```
 
 makes the window visible.
 
-**---**
+---
 
-**## FollowCursor Logic Summary**
+## FollowCursor Logic Summary
 
 The complete interaction can be simplified to:
 
-\`\`\`text
+```text
 Mouse moves
     ↓
 Read cursor X and Y
@@ -553,92 +548,87 @@ Calculate three vertices around the cursor
 Fill triangle red
     ↓
 Draw black outline
-\`\`\`
+```
 
 The triangle itself is not moved as a persistent graphical object.
 
 Instead, its vertex coordinates are recalculated and the entire triangle is redrawn at the new location whenever the cursor moves.
 
-**---**
+---
 
-**# Module 2 — Zoom / Triangle Zoom**
+# Module 2 — Zoom / Triangle Zoom
 
-\`Zoom.java\` creates a green equilateral triangle with a black outline.
+`Zoom.java` creates a green equilateral triangle with a black outline.
 
-Unlike \`FollowCursor\`, the triangle does not move around the window.
+Unlike `FollowCursor`, the triangle does not move around the window.
 
 Its centre remains fixed, while only its size changes according to the cursor's Y-coordinate.
 
-\- Cursor near the **\*\*top\*\*** → larger triangle.
-\- Cursor near the **\*\*bottom\*\*** → smaller triangle.
-\- Horizontal cursor movement does not affect the result.
+- Cursor near the **top** → larger triangle.
+- Cursor near the **bottom** → smaller triangle.
+- Horizontal cursor movement does not affect the result.
 
-**## Demonstration**
+## Demonstration
 
-<video controls width="720">
-  <source src="./media/TriangleZoom.mp4" type="video/mp4">
-  Your browser does not support embedded MP4 video.
-</video>
+[▶ View `TriangleZoom.mp4`](./media/TriangleZoom.mp4)
 
-[Open `TriangleZoom.mp4` directly](./media/TriangleZoom.mp4)
+---
 
-**---**
+## 1. Imports
 
-**## 1. Imports**
+```java
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+```
 
-\`\`\`java
-import javax.swing.\*;
-import java.awt.\*;
-import java.awt.event.\*;
-\`\`\`
+These imports provide the same Swing, graphics, and mouse-event functionality used by `FollowCursor`.
 
-These imports provide the same Swing, graphics, and mouse-event functionality used by \`FollowCursor\`.
+---
 
-**---**
+## 2. Creating the Zoom Panel
 
-**## 2. Creating the Zoom Panel**
-
-\`\`\`java
+```java
 public class Zoom extends JPanel {
-\`\`\`
+```
 
-\`Zoom\` extends \`JPanel\`, allowing custom drawing through \`paintComponent\`.
+`Zoom` extends `JPanel`, allowing custom drawing through `paintComponent`.
 
-**---**
+---
 
-**## 3. Storing the Cursor's Y-Coordinate**
+## 3. Storing the Cursor's Y-Coordinate
 
-\`\`\`java
+```java
 private int mouseY = 300;
-\`\`\`
+```
 
 Only the vertical cursor position is required.
 
-Unlike \`FollowCursor\`, there is no \`mouseX\` variable because horizontal movement is intentionally ignored.
+Unlike `FollowCursor`, there is no `mouseX` variable because horizontal movement is intentionally ignored.
 
-**---**
+---
 
-**## 4. Minimum and Maximum Triangle Sizes**
+## 4. Minimum and Maximum Triangle Sizes
 
-\`\`\`java
-private final int MIN\_SIZE = 30;
-private final int MAX\_SIZE = 400;
-\`\`\`
+```java
+private final int MIN_SIZE = 30;
+private final int MAX_SIZE = 400;
+```
 
 These constants define the allowed triangle-size range.
 
-\`\`\`text
+```text
 Minimum side length = 30 pixels
 Maximum side length = 400 pixels
-\`\`\`
+```
 
 This prevents the triangle from shrinking to zero or becoming excessively large.
 
-**---**
+---
 
-**## 5. Background and Mouse Listener**
+## 5. Background and Mouse Listener
 
-\`\`\`java
+```java
 public Zoom() {
 
     setBackground(Color.WHITE);
@@ -658,15 +648,15 @@ public Zoom() {
         }
     });
 }
-\`\`\`
+```
 
 The background is white.
 
 Whenever the mouse moves, only:
 
-\`\`\`java
+```java
 mouseY = e.getY();
-\`\`\`
+```
 
 is recorded.
 
@@ -674,113 +664,113 @@ The X-coordinate is never read.
 
 After the Y-coordinate changes:
 
-\`\`\`java
+```java
 repaint();
-\`\`\`
+```
 
 requests a new frame.
 
-**---**
+---
 
-**## 6. Preparing the Drawing Context**
+## 6. Preparing the Drawing Context
 
-\`\`\`java
+```java
 @Override
 protected void paintComponent(Graphics g) {
     super.paintComponent(g);
 
     Graphics2D g2 = (Graphics2D) g;
-\`\`\`
+```
 
-As in \`FollowCursor\`, the panel is cleared before each redraw and the \`Graphics\` object is converted to \`Graphics2D\`.
+As in `FollowCursor`, the panel is cleared before each redraw and the `Graphics` object is converted to `Graphics2D`.
 
-**---**
+---
 
-**## 7. Anti-Aliasing**
+## 7. Anti-Aliasing
 
-\`\`\`java
+```java
 g2.setRenderingHint(
-        RenderingHints.KEY\_ANTIALIASING,
-        RenderingHints.VALUE\_ANTIALIAS\_ON
+        RenderingHints.KEY_ANTIALIASING,
+        RenderingHints.VALUE_ANTIALIAS_ON
 );
-\`\`\`
+```
 
 This smooths the triangle edges.
 
-**---**
+---
 
-**## 8. Reading the Current Panel Height**
+## 8. Reading the Current Panel Height
 
-\`\`\`java
+```java
 int panelHeight = getHeight();
 
 if (panelHeight <= 0) {
     return;
 }
-\`\`\`
+```
 
 The program needs the current panel height because the mouse Y-coordinate must be interpreted relative to the available vertical space.
 
 The check prevents invalid calculations if the panel height is zero.
 
-**---**
+---
 
-**## 9. Converting Mouse Position into a Ratio**
+## 9. Converting Mouse Position into a Ratio
 
-\`\`\`java
+```java
 double ratio = (double) mouseY / panelHeight;
-\`\`\`
+```
 
-This converts the cursor's vertical position into a value approximately between \`0.0\` and \`1.0\`.
+This converts the cursor's vertical position into a value approximately between `0.0` and `1.0`.
 
-For a \`600\`-pixel-high panel:
+For a `600`-pixel-high panel:
 
-\`\`\`text
+```text
 mouseY = 0    → ratio = 0.0
 mouseY = 300  → ratio = 0.5
 mouseY = 600  → ratio = 1.0
-\`\`\`
+```
 
-This is a form of **\*\*normalization\*\***.
+This is a form of **normalization**.
 
 It converts a value from one range:
 
-\`\`\`text
+```text
 0 → panelHeight
-\`\`\`
+```
 
 into:
 
-\`\`\`text
+```text
 0.0 → 1.0
-\`\`\`
+```
 
-**---**
+---
 
-**## 10. Clamping the Ratio**
+## 10. Clamping the Ratio
 
-\`\`\`java
+```java
 ratio = Math.max(0, Math.min(1, ratio));
-\`\`\`
+```
 
 The ratio is forced to remain within:
 
-\`\`\`text
+```text
 0 ≤ ratio ≤ 1
-\`\`\`
+```
 
-This ensures that the calculated triangle size always remains between \`MIN\_SIZE\` and \`MAX\_SIZE\`.
+This ensures that the calculated triangle size always remains between `MIN_SIZE` and `MAX_SIZE`.
 
-**---**
+---
 
-**## 11. Mapping Cursor Position to Triangle Size**
+## 11. Mapping Cursor Position to Triangle Size
 
-\`\`\`java
+```java
 int side = (int) (
-        MAX\_SIZE -
-        ratio \* (MAX\_SIZE - MIN\_SIZE)
+        MAX_SIZE -
+        ratio * (MAX_SIZE - MIN_SIZE)
 );
-\`\`\`
+```
 
 This is the core zoom logic.
 
@@ -788,184 +778,184 @@ The mouse Y-coordinate is mapped onto the triangle's allowed size range.
 
 Because screen Y-values increase downward:
 
-\`\`\`text
+```text
 Top of window    → Y is small
 Bottom of window → Y is large
-\`\`\`
+```
 
 the mapping is reversed.
 
-**### At the Top**
+### At the Top
 
 If:
 
-\`\`\`text
+```text
 ratio = 0
-\`\`\`
+```
 
 then:
 
-\`\`\`text
-side = MAX\_SIZE
-\`\`\`
+```text
+side = MAX_SIZE
+```
 
 So the triangle is largest.
 
-**### At the Bottom**
+### At the Bottom
 
 If:
 
-\`\`\`text
+```text
 ratio = 1
-\`\`\`
+```
 
 then:
 
-\`\`\`text
-side = MIN\_SIZE
-\`\`\`
+```text
+side = MIN_SIZE
+```
 
 So the triangle is smallest.
 
-For a \`600\`-pixel-high panel:
+For a `600`-pixel-high panel:
 
-\`\`\`text
+```text
 Cursor Y     Ratio     Approx. side length
 0            0.00      400 px
 150          0.25      307 px
 300          0.50      215 px
 450          0.75      122 px
 600          1.00       30 px
-\`\`\`
+```
 
 Conceptually:
 
-\`\`\`text
+```text
 Cursor Y
 0 ───────────────────────────── 600
 │                                 │
 ▼                                 ▼
 400 ───────────────────────────── 30
 Triangle side length
-\`\`\`
+```
 
-**---**
+---
 
-**## 12. Calculating Triangle Height**
+## 12. Calculating Triangle Height
 
-\`\`\`java
-double triangleHeight = Math.sqrt(3) / 2 \* side;
-\`\`\`
+```java
+double triangleHeight = Math.sqrt(3) / 2 * side;
+```
 
 Because the side length is now variable, the triangle height must also be recalculated every frame.
 
 The same equilateral-triangle relationship is used:
 
-\`\`\`text
+```text
 h = (sqrt(3) / 2) × side
-\`\`\`
+```
 
-**---**
+---
 
-**## 13. Keeping the Triangle Fixed at the Centre**
+## 13. Keeping the Triangle Fixed at the Centre
 
-\`\`\`java
+```java
 int centerX = getWidth() / 2;
 int centerY = getHeight() / 2;
-\`\`\`
+```
 
-Unlike \`FollowCursor\`, these coordinates do not depend on the mouse.
+Unlike `FollowCursor`, these coordinates do not depend on the mouse.
 
 The triangle centre is always the centre of the panel.
 
 Therefore:
 
-\- mouse movement changes the scale,
-\- mouse movement does not change the triangle position.
+- mouse movement changes the scale,
+- mouse movement does not change the triangle position.
 
-**---**
+---
 
-**## 14. Recalculating Vertices for the Current Size**
+## 14. Recalculating Vertices for the Current Size
 
-\`\`\`java
+```java
 int topX = centerX;
 int topY = (int) (
-        centerY - (2.0 / 3.0) \* triangleHeight
+        centerY - (2.0 / 3.0) * triangleHeight
 );
 
 int leftX = centerX - side / 2;
 int leftY = (int) (
-        centerY + (1.0 / 3.0) \* triangleHeight
+        centerY + (1.0 / 3.0) * triangleHeight
 );
 
 int rightX = centerX + side / 2;
 int rightY = leftY;
-\`\`\`
+```
 
-These calculations are almost identical to \`FollowCursor\`.
+These calculations are almost identical to `FollowCursor`.
 
 The important difference is that the reference point is:
 
-\`\`\`text
+```text
 (centerX, centerY)
-\`\`\`
+```
 
 instead of:
 
-\`\`\`text
+```text
 (mouseX, mouseY)
-\`\`\`
+```
 
-and the value of \`side\` changes continuously with the cursor's Y-coordinate.
+and the value of `side` changes continuously with the cursor's Y-coordinate.
 
-**---**
+---
 
-**## 15. Storing the Vertices**
+## 15. Storing the Vertices
 
-\`\`\`java
+```java
 int[] xPoints = {
-        topX,
-        leftX,
-        rightX
+    topX,
+    leftX,
+    rightX
 };
 
 int[] yPoints = {
-        topY,
-        leftY,
-        rightY
+    topY,
+    leftY,
+    rightY
 };
-\`\`\`
+```
 
 The three vertices are passed to Java's polygon-drawing methods.
 
-**---**
+---
 
-**## 16. Drawing the Green Triangle**
+## 16. Drawing the Green Triangle
 
-\`\`\`java
+```java
 g2.setColor(Color.GREEN);
 g2.fillPolygon(xPoints, yPoints, 3);
-\`\`\`
+```
 
 The triangle is filled in green.
 
-**---**
+---
 
-**## 17. Drawing the Black Outline**
+## 17. Drawing the Black Outline
 
-\`\`\`java
+```java
 g2.setColor(Color.BLACK);
 g2.setStroke(new BasicStroke(3));
 g2.drawPolygon(xPoints, yPoints, 3);
-\`\`\`
+```
 
 A three-pixel black outline is drawn around the triangle.
 
-**---**
+---
 
-**## 18. Creating the Zoom Window**
+## 18. Creating the Zoom Window
 
-\`\`\`java
+```java
 public static void main(String[] args) {
 
     JFrame frame = new JFrame("Triangle Zoom");
@@ -975,22 +965,22 @@ public static void main(String[] args) {
     frame.add(panel);
 
     frame.setSize(800, 600);
-    frame.setDefaultCloseOperation(JFrame.EXIT\_ON\_CLOSE);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setLocationRelativeTo(null);
 
     frame.setVisible(true);
 }
-\`\`\`
+```
 
-This creates an \`800 × 600\` Swing window, adds the \`Zoom\` panel, centres the window, and displays it.
+This creates an `800 × 600` Swing window, adds the `Zoom` panel, centres the window, and displays it.
 
-**---**
+---
 
-**## Zoom Logic Summary**
+## Zoom Logic Summary
 
 The complete process is:
 
-\`\`\`text
+```text
 Mouse moves vertically
         ↓
 Read cursor Y
@@ -1008,49 +998,49 @@ Recalculate the three vertices
 Fill triangle green
         ↓
 Draw black outline
-\`\`\`
+```
 
 The X-coordinate of the mouse does not participate in any of these calculations.
 
-**---**
+---
 
 The two modules demonstrate two different graphical transformations:
 
-**### Translation**
+### Translation
 
-\`FollowCursor\` changes the position of the triangle without changing its size.
+`FollowCursor` changes the position of the triangle without changing its size.
 
-\`\`\`text
+```text
 Same triangle → different position
-\`\`\`
+```
 
-**### Scaling**
+### Scaling
 
-\`Zoom\` changes the size of the triangle without changing its centre position.
+`Zoom` changes the size of the triangle without changing its centre position.
 
-\`\`\`text
+```text
 Same centre → different triangle size
-\`\`\`
+```
 
-**---**
+---
 
-**# Key Concepts Demonstrated**
+# Key Concepts Demonstrated
 
 This project demonstrates several fundamental ideas in event-driven graphical programming:
 
-\- Java Swing windows and panels
-\- custom rendering with \`paintComponent\`
-\- 2D drawing with \`Graphics2D\`
-\- polygon rendering
-\- mouse-motion event handling
-\- screen coordinate systems
-\- anti-aliasing
-\- equilateral-triangle geometry
-\- centroid-based positioning
-\- translation
-\- scaling
-\- normalization
-\- mapping one numerical range to another
-\- continuous redraws using \`repaint()\`
+- Java Swing windows and panels
+- custom rendering with `paintComponent`
+- 2D drawing with `Graphics2D`
+- polygon rendering
+- mouse-motion event handling
+- screen coordinate systems
+- anti-aliasing
+- equilateral-triangle geometry
+- centroid-based positioning
+- translation
+- scaling
+- normalization
+- mapping one numerical range to another
+- continuous redraws using `repaint()`
 
-**---**
+---
