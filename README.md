@@ -8,7 +8,7 @@ Repository for **CSC360: Computer Graphics and Digital Image Processing — Mons
 CSC360-AU2520215/
 ├── .gitignore
 ├── README.md
-├── Code/
+├── code/
 │   ├── moving_triangle/
 │   │   ├── README.md
 │   │   ├── media/
@@ -27,7 +27,10 @@ CSC360-AU2520215/
 │           │   └── java/com/github/varunkarthic/App.java
 │           └── test/
 │               └── java/com/github/varunkarthic/AppTest.java
-└── Notes/
+├── notes/
+    ├── 06-Aug-2026.md
+    └── ...
+└── reflections/
     ├── 06-Aug-2026.md
     └── ...
 ```
@@ -36,7 +39,7 @@ Maven creates a `target/` directory inside a project during compilation, testing
 
 ## Notes
 
-Course notes are stored in the `Notes/` directory as Markdown files using the following naming convention:
+Course notes are stored in the `notes/` directory as Markdown files using the following naming convention:
 
 ```text
 DD-Mmm-YYYY.md
@@ -50,12 +53,16 @@ For example:
 
 ## Code and Projects
 
-Programming exercises and project implementations are stored in the `Code/` directory. The current projects use two layouts:
+Programming exercises and project implementations are stored in the `code/` directory. The current projects use two layouts:
 
 * `moving_triangle/` contains standalone Java Swing programs compiled directly with `javac`.
 * `square/` is an Apache Maven project that follows the standard `src/main/java` and `src/test/java` directory layout.
 
 For Maven projects, `pom.xml` defines the project configuration and dependencies, application code belongs in `src/main/java`, and tests belong in `src/test/java`. The generated `target/` directory must not be committed.
+
+## Reflections
+
+Class reflections are stored separately in the `reflections/` directory using the same date-based filenames as the notes.
 
 Each project includes a dedicated `README.md` containing:
 

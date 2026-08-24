@@ -88,7 +88,7 @@ mvn -version
 Open a terminal and move into the project directory. From the repository root:
 
 ```bash
-cd Code/square
+cd code/square
 ```
 
 All Maven commands in this README should be run from the directory containing `pom.xml`.
