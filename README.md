@@ -37,9 +37,9 @@ CSC360-AU2520215/
 
 Maven creates a `target/` directory inside a project during compilation, testing, and packaging. Because it contains generated build output rather than source code, it is intentionally omitted from this structure and ignored by Git.
 
-## Notes
+## Notes and Reflections
 
-Course notes are stored in the `notes/` directory as Markdown files using the following naming convention:
+Course notes and class reflections are stored separately in the `notes/` and `reflections/` directories. Both use the following date-based naming convention:
 
 ```text
 DD-Mmm-YYYY.md
@@ -51,6 +51,16 @@ For example:
 06-Aug-2026.md
 ```
 
+The table below provides direct links to the notes and reflection for each class session. Session 1 is marked `N/A` because no dated documentation is currently available for it.
+
+| Date | Session | Notes | Reflection | Summary |
+|---|---:|---|---|---|
+| N/A | 1 | N/A | N/A | No dated notes or reflection are currently available. |
+| 06-Aug-2026 | 2 | [Open notes](notes/06-Aug-2026.md) | [Open reflection](reflections/06-Aug-2026.md) | Covered SSH and HTTPS, image-generation requirements, and raster versus vector graphics. |
+| 13-Aug-2026 | 3 | [Open notes](notes/13-Aug-2026.md) | [Open reflection](reflections/13-Aug-2026.md) | Introduced Maven, standard Java project structure, `pom.xml`, dependencies, plugins, and the build lifecycle. |
+| 18-Aug-2026 | 4 | [Open notes](notes/18-Aug-2026.md) | [Open reflection](reflections/18-Aug-2026.md) | Analysed square geometry by calculating vertices from a centre point and side length. |
+| 20-Aug-2026 | 5 | [Open notes](notes/20-Aug-2026.md) | [Open reflection](reflections/20-Aug-2026.md) | Analysed Java inheritance, overriding, `super`, primitive shapes, and the boundary method for triangles. |
+
 ## Code and Projects
 
 Programming exercises and project implementations are stored in the `code/` directory. The current projects use two layouts:
@@ -59,10 +69,6 @@ Programming exercises and project implementations are stored in the `code/` dire
 * `square/` is an Apache Maven project that follows the standard `src/main/java` and `src/test/java` directory layout.
 
 For Maven projects, `pom.xml` defines the project configuration and dependencies, application code belongs in `src/main/java`, and tests belong in `src/test/java`. The generated `target/` directory must not be committed.
-
-## Reflections
-
-Class reflections are stored separately in the `reflections/` directory using the same date-based filenames as the notes.
 
 Each project includes a dedicated `README.md` containing:
 
