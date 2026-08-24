@@ -53,13 +53,13 @@ For example:
 
 The table below provides direct links to the notes and reflection for each class session. Session 1 is marked `N/A` because no dated documentation is currently available for it.
 
-| Date | Session | Notes | Reflection | Summary |
+| Class Date | Session | Notes | Reflection | Summary |
 |---|---:|---|---|---|
 | N/A | 1 | N/A | N/A | No dated notes or reflection are currently available. |
-| 06-Aug-2026 | 2 | [Open notes](notes/06-Aug-2026.md) | [Open reflection](reflections/06-Aug-2026.md) | Covered SSH and HTTPS, image-generation requirements, and raster versus vector graphics. |
-| 13-Aug-2026 | 3 | [Open notes](notes/13-Aug-2026.md) | [Open reflection](reflections/13-Aug-2026.md) | Introduced Maven, standard Java project structure, `pom.xml`, dependencies, plugins, and the build lifecycle. |
-| 18-Aug-2026 | 4 | [Open notes](notes/18-Aug-2026.md) | [Open reflection](reflections/18-Aug-2026.md) | Analysed square geometry by calculating vertices from a centre point and side length. |
-| 20-Aug-2026 | 5 | [Open notes](notes/20-Aug-2026.md) | [Open reflection](reflections/20-Aug-2026.md) | Analysed Java inheritance, overriding, `super`, primitive shapes, and the boundary method for triangles. |
+| Aug 6, 2026 | 2 | [Open](notes/06-Aug-2026.md) | [Open](reflections/06-Aug-2026.md) | Covered SSH and HTTPS, image-generation requirements, and raster versus vector graphics. |
+| Aug 13, 2026 | 3 | [Open](notes/13-Aug-2026.md) | [Open](reflections/13-Aug-2026.md) | Introduced Maven, standard Java project structure, `pom.xml`, dependencies, plugins, and the build lifecycle. |
+| Aug 18, 2026 | 4 | [Open](notes/18-Aug-2026.md) | [Open](reflections/18-Aug-2026.md) | Analysed square geometry by calculating vertices from a centre point and side length. |
+| Aug 20, 2026 | 5 | [Open](notes/20-Aug-2026.md) | [Open](reflections/20-Aug-2026.md) | Analysed Java inheritance, overriding, `super`, primitive shapes, and the boundary method for triangles. |
 
 ## Code and Projects
 
@@ -67,6 +67,11 @@ Programming exercises and project implementations are stored in the `code/` dire
 
 * `moving_triangle/` contains standalone Java Swing programs compiled directly with `javac`.
 * `square/` is an Apache Maven project that follows the standard `src/main/java` and `src/test/java` directory layout.
+
+| Project | Folder | Summary |
+|---|---|---|
+| Moving Triangle | [Open](code/moving_triangle/) | Standalone Java Swing programs that animate a triangle by following cursor movement and zooming. |
+| Square | [Open](code/square/) | Maven-based Java Swing project that draws a blue square outline using `Graphics2D`. |
 
 For Maven projects, `pom.xml` defines the project configuration and dependencies, application code belongs in `src/main/java`, and tests belong in `src/test/java`. The generated `target/` directory must not be committed.
 
