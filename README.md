@@ -9,18 +9,16 @@ CSC360-AU2520215/
 ├── .gitignore
 ├── README.md
 ├── code/
-│   ├── moving_triangle/
+│   ├── project_name/
 │   │   ├── README.md
 │   │   ├── media/
-│   │   │   ├── FollowCursor.mp4
-│   │   │   └── TriangleZoom.mp4
+│   │   │   └── ...
 │   │   └── src/
-│   │       ├── FollowCursor.java
-│   │       └── Zoom.java
-│   └── square/
+│   │       └── ...
+│   └── project_name/
 │       ├── README.md
 │       ├── media/
-│       │   └── square.png
+│       │   └── ...
 │       ├── pom.xml
 │       └── src/
 │           ├── main/
