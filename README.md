@@ -46,7 +46,7 @@ DD-Mmm-YYYY.md
 For example:
 
 ```text
-06-Aug-2026.md
+060826.md
 ```
 
 The table below provides direct links to the notes and reflection for each class session. Session 1 is marked `N/A` because no dated documentation is currently available for it.
@@ -54,10 +54,11 @@ The table below provides direct links to the notes and reflection for each class
 | Class Date | Session | Notes | Reflection | Summary |
 |---|---:|---|---|---|
 | N/A | 1 | N/A | N/A | No dated notes or reflection are currently available. |
-| Aug 6, 2026 | 2 | [Open](notes/06-Aug-2026.md) | [Open](reflections/06-Aug-2026.md) | Covered SSH and HTTPS, image-generation requirements, and raster versus vector graphics. |
-| Aug 13, 2026 | 3 | [Open](notes/13-Aug-2026.md) | [Open](reflections/13-Aug-2026.md) | Introduced Maven, standard Java project structure, `pom.xml`, dependencies, plugins, and the build lifecycle. |
-| Aug 18, 2026 | 4 | [Open](notes/18-Aug-2026.md) | [Open](reflections/18-Aug-2026.md) | Analysed square geometry by calculating vertices from a centre point and side length. |
-| Aug 20, 2026 | 5 | [Open](notes/20-Aug-2026.md) | [Open](reflections/20-Aug-2026.md) | Analysed Java inheritance, overriding, `super`, primitive shapes, and the boundary method for triangles. |
+| Aug 6, 2026 | 2 | [Open](notes/060826.md) | [Open](reflections/060826.md) | Covered SSH and HTTPS, image-generation requirements, and raster versus vector graphics. |
+| Aug 13, 2026 | 3 | [Open](notes/130826.md) | [Open](reflections/130826.md) | Introduced Maven, standard Java project structure, `pom.xml`, dependencies, plugins, and the build lifecycle. |
+| Aug 18, 2026 | 4 | [Open](notes/180826.md) | [Open](reflections/180826.md) | Analysed square geometry by calculating vertices from a centre point and side length. |
+| Aug 20, 2026 | 5 | [Open](notes/200826.md) | [Open](reflections/200826.md) | Analysed Java inheritance, overriding, `super`, primitive shapes, and the boundary method for triangles. |
+| Aug 25, 2026 | 6 | [Open](notes/250826.md) | [Open](reflections/250826.md) | Covered Maven project configuration, Swing thread safety, processes, threads, and responsive GUI design. |
 
 ## Code and Projects
 
