@@ -26,10 +26,10 @@ CSC360-AU2520215/
 │           └── test/
 │               └── java/com/github/varunkarthic/AppTest.java
 ├── notes/
-    ├── 06-Aug-2026.md
+    ├── 060826.md
     └── ...
 └── reflections/
-    ├── 06-Aug-2026.md
+    ├── 060826.md
     └── ...
 ```
 
@@ -40,7 +40,7 @@ Maven creates a `target/` directory inside a project during compilation, testing
 Course notes and class reflections are stored separately in the `notes/` and `reflections/` directories. Both use the following date-based naming convention:
 
 ```text
-DD-Mmm-YYYY.md
+DDMMYY.md
 ```
 
 For example:
