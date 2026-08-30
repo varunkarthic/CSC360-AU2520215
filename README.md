@@ -53,8 +53,8 @@ The table below provides direct links to the notes and reflection for each class
 
 | Class Date | Session | Notes | Reflection | Summary |
 |---|---:|---|---|---|
-| N/A | 1 | N/A | N/A | No dated notes or reflection are currently available. |
-| Aug 6, 2026 | 2 | [Open](notes/060826.md) | [Open](reflections/060826.md) | Covered SSH and HTTPS, image-generation requirements, and raster versus vector graphics. |
+| Aug 04, 2026 | 1 | N/A | N/A | No dated notes or reflection are currently available. |
+| Aug 06, 2026 | 2 | [Open](notes/060826.md) | [Open](reflections/060826.md) | Covered SSH and HTTPS, image-generation requirements, and raster versus vector graphics. |
 | Aug 13, 2026 | 3 | [Open](notes/130826.md) | [Open](reflections/130826.md) | Introduced Maven, standard Java project structure, `pom.xml`, dependencies, plugins, and the build lifecycle. |
 | Aug 18, 2026 | 4 | [Open](notes/180826.md) | [Open](reflections/180826.md) | Analysed square geometry by calculating vertices from a centre point and side length. |
 | Aug 20, 2026 | 5 | [Open](notes/200826.md) | [Open](reflections/200826.md) | Analysed Java inheritance, overriding, `super`, primitive shapes, and the boundary method for triangles. |
