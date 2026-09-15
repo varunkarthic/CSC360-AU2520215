@@ -62,6 +62,9 @@ The table below provides direct links to the notes and reflection for each class
 | Aug 27, 2026 | 7 | [Open](notes/270826.md) | [Open](reflections/270826.md) | Covered Maven local repositories, Java packaging, dependencies, CI/CD, character encoding, testing, and JavaFX. |
 | Sep 01, 2026 | 8 | [Open](notes/010926.md) | [Open](reflections/010926.md) | Covered drawing triangles from equations, right-click circles and arrows, and binary-tree visualisation in JavaFX. |
 | Sep 03, 2026 | 9 | [Open](notes/030926.md) | [Open](reflections/030926.md) | Covered ASCII trees, arrows between lists with common elements, and custom FXML splash screens. |
+| Sep 08, 2026 | 10 | [Open](notes/080926.md) | [Open](reflections/080926.md) | Covered event handlers and event sources, Java collections, and `GridPane` and `BorderPane` layouts. |
+| Sep 10, 2026 | 11 | N/A | N/A | Absent. |
+| Sep 15, 2026 | 12 | N/A | N/A | Absent. |
 
 ## Code and Projects
 
